@@ -1,2 +1,2 @@
-# AAI-501-GROUP10
+# Autonomous Driving
 AAI 501 - GROUP10 - Team Project
