@@ -86,3 +86,12 @@ Manages vehicle control through:
 - Traffic Signal: https://www.cvlibs.net/datasets/kitti/
 - Object detection: https://cocodataset.org/#download
 
+## References
+
+1. Celi, H. (n.d.). mission_planning.ipynb. GitHub. Retrieved from https://github.com/hankeceli/self-driving-cars/blob/master/mission_planning.ipynb
+2. Cijov, A. (n.d.). Self-driving cars. Kaggle. Retrieved from https://www.kaggle.com/datasets/alincijov/self-driving-cars?resource=download
+3. Furda, A., & Vlacic, L. (2010). Real-time decision making for autonomous city vehicles. Journal of Robotics and Mechatronics, 22(6), 694. https://doi.org/10.20965/jrm.2010.p0694
+4. Jain, R., & Kumar, R. (2017). Autonomous driving system with real-time decision making. In 2017 International Conference on Intelligent Systems and Control (ISSC) (pp. 1-6). IEEE. https://doi.org/10.1109/ISSC.2017.8122757
+5. Tendulkar, S. (2024, October). Real-time decision-making in autonomous systems: Leveraging cloud-based reinforcement learning for generative AI and adaptive resource allocation. University of Computer Studies Mandalay. https://doi.org/10.13140/RG.2.2.21323.60964
+6. National Highway Traffic Safety Administration. (2023). Automated Vehicles for Safety. https://www.nhtsa.gov/technology-innovation/automated-vehicles-safety
+7. Boeing, G. (2025). Modeling and Analyzing Urban Networks and Amenities with OSMnx. Geographical Analysis, published online ahead of print. doi:10.1111/gean.70009
