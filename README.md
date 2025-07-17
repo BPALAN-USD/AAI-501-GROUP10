@@ -76,4 +76,13 @@ Manages vehicle control through:
 - Expand to multi-agent traffic simulation  
 - Integrate LiDAR-based mapping  
 - Enhance NLP with multilingual support  
-- Explore V2V (Vehicle-to-Vehicle) communication  
+- Explore V2V (Vehicle-to-Vehicle) communication
+
+## Dataset Used
+
+- Waymo : http://dl.yf.io/bdd-data/v1/videos/
+- Self drive Kaggle : https://www.kaggle.com/datasets/alincijov/self-driving-cars
+- Routing : https://osmnx.readthedocs.io/en/stable/
+- Traffic Signal: https://www.cvlibs.net/datasets/kitti/
+- Object detection: https://cocodataset.org/#download
+
