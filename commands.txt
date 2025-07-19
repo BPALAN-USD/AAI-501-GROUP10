@@ -1,0 +1,3 @@
+conda create --name selfdrive python=3.11
+conda activate selfdrive
+pip install -r requirements.txt
