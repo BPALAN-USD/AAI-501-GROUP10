@@ -13,19 +13,8 @@ os.makedirs(LOGS_DIR, exist_ok=True)
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 
-# Logging configuration
-log_file_path = os.path.join(LOGS_DIR, "getDataset.log")
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(message)s",
-    handlers=[
-        logging.FileHandler(log_file_path),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
 
-def get_roboflow_api_key(filepath):
+def get_roboflow_api_key(logger,filepath):
     try:
         with open(filepath, "r") as f:
             for line in f:
@@ -35,10 +24,10 @@ def get_roboflow_api_key(filepath):
         logger.error(f"Failed to read API key: {e}")
     return None
 
-def get_traffic_dataset():
+def get_traffic_dataset(logger):
     logger.info("🚀 Starting dataset download workflow...")
 
-    api_key = get_roboflow_api_key(CREDENTIALS_PATH)
+    api_key = get_roboflow_api_key(logger,CREDENTIALS_PATH)
     logger.info(f"✅ Using API key: {api_key}")
     if not api_key:
         logger.error("❌ API key not found or unreadable.")
@@ -59,10 +48,10 @@ def get_traffic_dataset():
 
         logger.info("⬇️ Downloading dataset using Roboflow SDK...")
         # Download directly into target_path
-        dataset = version.download("yolov7", location=target_path)
+        ##dataset = version.download("yolov7", location=target_path)
 
         logger.info(f"✅ Dataset downloaded to: {target_path}")
-        logger.info(f"📄 Files in dataset: {os.listdir(target_path)}")
+        ##logger.info(f"📄 Files in dataset: {os.listdir(target_path)}")
         return target_path
 
     except Exception as e:
@@ -71,5 +60,3 @@ def get_traffic_dataset():
         logger.error(traceback.format_exc())
         return None
 
-# Optional: export logs dir for Streamlit
-LOGS_DIR_PATH = LOGS_DIR

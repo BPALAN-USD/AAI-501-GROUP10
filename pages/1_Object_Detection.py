@@ -1,23 +1,21 @@
 import streamlit as st
 from utils.getDataset import *
 import os
-
+from utils.logger_setup import *
 
 st.set_page_config(page_title="Traffic Sign ML Workflow", layout="wide")
 
+logger = get_logger("object_detection.log")
 
-logs_directory = os.path.abspath("logs")
+logger.info("This is a test log message.")
 
-st.write(f"Working Dir: {os.getcwd()}")
-st.write(f"Credentials Path Exists: {os.path.exists('credentials.txt')}")
-st.write(f"Dataset Folder Exists: {os.path.exists('datasets')}")
-st.write(f"Logs Directory: {logs_directory}")
+
 # --- Add Restart Workflow Button in Sidebar ---
 def reset():
     st.session_state.step = 1
     st.session_state.dataset_path = None
 
-st.sidebar.button("🔄 Restart Workflow", on_click=reset)
+st.button("🔄 Restart Workflow", on_click=reset)
 
 
 
@@ -46,7 +44,7 @@ if st.session_state.step == 1:
     if st.button("Download Dataset"):
         with st.spinner("Downloading Traffic dataset..."):
             try:
-                dataset_path = get_traffic_dataset()
+                dataset_path = get_traffic_dataset(logger)
                 if dataset_path and os.path.exists(dataset_path):
                     st.session_state.dataset_path = dataset_path
                     st.success(f"Downloaded to: {dataset_path}")
@@ -84,24 +82,3 @@ elif st.session_state.step == 4:
     if st.button("Restart Workflow"):
         reset()
 
-# --- LOG FILES VIEWER ---
-# Add a button to clear logs
-if os.path.exists(logs_directory):
-    if st.button("Clear Logs"):
-        for f in os.listdir(logs_directory):
-            file_path = os.path.join(logs_directory, f)
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-        st.success("All log files have been cleared.")
-
-    log_files = [f for f in os.listdir(logs_directory) if os.path.isfile(os.path.join(logs_directory, f))]
-    if log_files:
-        with st.expander("Show Log Files"):
-            tabs = st.tabs(log_files)
-            for i, log_file in enumerate(log_files):
-                with tabs[i]:
-                    log_path = os.path.join(logs_directory, log_file)
-                    with open(log_path, "r") as f:
-                        st.code(f.read(), language="log")
-    else:
-        st.info("No log files found.")
