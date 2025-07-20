@@ -4,3 +4,4 @@ torchaudio
 opencv-python
 matplotlib
 ultralytics
+roboflow
