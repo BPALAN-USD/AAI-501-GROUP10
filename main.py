@@ -1,9 +1,17 @@
 import streamlit as st
 from utils.getDataset import *
+import os
 
 
 st.set_page_config(page_title="Traffic Sign ML Workflow", layout="wide")
 
+# Clear all log files at the start of the app
+logs_directory = os.path.join(os.path.dirname(__file__), "logs")
+if os.path.exists(logs_directory):
+    for f in os.listdir(logs_directory):
+        file_path = os.path.join(logs_directory, f)
+        if os.path.isfile(file_path):
+            os.remove(file_path)
 
 # Initialize state
 if "step" not in st.session_state:
