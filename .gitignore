@@ -1,4 +1,5 @@
 datasets/
+localtest/
 logs/
 __pycache__/
 *.pyc

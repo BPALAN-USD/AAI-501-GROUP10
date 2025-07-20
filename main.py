@@ -5,13 +5,21 @@ import os
 
 st.set_page_config(page_title="Traffic Sign ML Workflow", layout="wide")
 
-# Clear all log files at the start of the app
-logs_directory = os.path.join(os.path.dirname(__file__), "logs")
-if os.path.exists(logs_directory):
-    for f in os.listdir(logs_directory):
-        file_path = os.path.join(logs_directory, f)
-        if os.path.isfile(file_path):
-            os.remove(file_path)
+
+logs_directory = os.path.abspath("logs")
+
+st.write(f"Working Dir: {os.getcwd()}")
+st.write(f"Credentials Path Exists: {os.path.exists('credentials.txt')}")
+st.write(f"Dataset Folder Exists: {os.path.exists('datasets')}")
+st.write(f"Logs Directory: {logs_directory}")
+# --- Add Restart Workflow Button in Sidebar ---
+def reset():
+    st.session_state.step = 1
+    st.session_state.dataset_path = None
+
+st.sidebar.button("🔄 Restart Workflow", on_click=reset)
+
+
 
 # Initialize state
 if "step" not in st.session_state:
@@ -38,9 +46,10 @@ if st.session_state.step == 1:
     if st.button("Download Dataset"):
         with st.spinner("Downloading Traffic dataset..."):
             try:
-                dataset = get_traffic_dataset()
-                st.session_state.dataset_path = dataset.location
-                st.success(f"Downloaded to: {dataset.location}")
+                dataset_path = get_traffic_dataset()
+                if dataset_path and os.path.exists(dataset_path):
+                    st.session_state.dataset_path = dataset_path
+                    st.success(f"Downloaded to: {dataset_path}")
                 next_step()
             except Exception as e:
                 st.error(f"Failed to download: {e}")
@@ -76,8 +85,15 @@ elif st.session_state.step == 4:
         reset()
 
 # --- LOG FILES VIEWER ---
-logs_directory = os.path.join(os.path.dirname(__file__), "logs")
+# Add a button to clear logs
 if os.path.exists(logs_directory):
+    if st.button("Clear Logs"):
+        for f in os.listdir(logs_directory):
+            file_path = os.path.join(logs_directory, f)
+            if os.path.isfile(file_path):
+                os.remove(file_path)
+        st.success("All log files have been cleared.")
+
     log_files = [f for f in os.listdir(logs_directory) if os.path.isfile(os.path.join(logs_directory, f))]
     if log_files:
         with st.expander("Show Log Files"):
@@ -87,3 +103,5 @@ if os.path.exists(logs_directory):
                     log_path = os.path.join(logs_directory, log_file)
                     with open(log_path, "r") as f:
                         st.code(f.read(), language="log")
+    else:
+        st.info("No log files found.")
