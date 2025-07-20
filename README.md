@@ -70,6 +70,31 @@ Manages vehicle control through:
 - ✅ Sensor-integrated vehicle control system  
 
 ---
+## 🚀 Getting Started: Setup & Execution Commands
+
+To set up and run this project, execute the following commands in your terminal:
+
+```sh
+# 1. Create and activate a new conda environment
+conda create --name selfdrive python=3.11
+conda activate selfdrive
+
+# 2. Install required Python packages
+pip install -r requirements.txt
+
+# 3. (Optional) Create the utils directory if it doesn't exist
+mkdir utils
+
+# 4. Launch the Streamlit application
+streamlit run Home.py
+
+# 5. When finished, deactivate the environment
+conda deactivate
+```
+
+> **Note:**  
+> Make sure you have [Anaconda](https://www.anaconda.com/products/distribution) and [Streamlit](https://streamlit.io/) installed on your system.
+
 
 ## 📚 Future Work
 
