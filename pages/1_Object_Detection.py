@@ -5,9 +5,12 @@ from utils.logger_setup import *
 
 st.set_page_config(page_title="Traffic Sign ML Workflow", layout="wide")
 
-logger = get_logger("object_detection.log")
-
-logger.info("This is a test log message.")
+if "object_detection_logger_initialized" not in st.session_state:
+    objectDetection_logger = get_logger("object_detection.log")
+    objectDetection_logger.info("Object Detection App Started.")
+    st.session_state.object_detection_logger_initialized = True
+else:
+    objectDetection_logger = get_logger("object_detection.log")  # reuse the logger
 
 
 # --- Add Restart Workflow Button in Sidebar ---
@@ -44,7 +47,7 @@ if st.session_state.step == 1:
     if st.button("Download Dataset"):
         with st.spinner("Downloading Traffic dataset..."):
             try:
-                dataset_path = get_traffic_dataset(logger)
+                dataset_path = get_traffic_dataset(objectDetection_logger)
                 if dataset_path and os.path.exists(dataset_path):
                     st.session_state.dataset_path = dataset_path
                     st.success(f"Downloaded to: {dataset_path}")

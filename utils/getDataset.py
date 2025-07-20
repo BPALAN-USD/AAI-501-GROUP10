@@ -1,15 +1,13 @@
 import os
-import logging
 import shutil
 from roboflow import Roboflow
 
 # Setup directories
 BASE_DIR = os.path.abspath(os.getcwd())
 CREDENTIALS_PATH = os.path.join(BASE_DIR, "credentials.txt")
-LOGS_DIR = os.path.join(BASE_DIR, "logs")
+
 DOWNLOAD_DIR = os.path.join(BASE_DIR, "datasets")
 
-os.makedirs(LOGS_DIR, exist_ok=True)
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 
@@ -48,7 +46,7 @@ def get_traffic_dataset(logger):
 
         logger.info("⬇️ Downloading dataset using Roboflow SDK...")
         # Download directly into target_path
-        ##dataset = version.download("yolov7", location=target_path)
+        dataset = version.download("yolov7", location=target_path)
 
         logger.info(f"✅ Dataset downloaded to: {target_path}")
         ##logger.info(f"📄 Files in dataset: {os.listdir(target_path)}")
