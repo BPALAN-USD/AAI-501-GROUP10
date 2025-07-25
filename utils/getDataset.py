@@ -28,7 +28,7 @@ def get_traffic_dataset(logger):
     api_key = get_roboflow_api_key(logger,CREDENTIALS_PATH)
     logger.info(f"✅ Using API key: {api_key}")
     if not api_key:
-        logger.error("❌ API key not found or unreadable.")
+        logger.error("❌ API key not found or unreadable. Ensure you have a valid credentials.txt file with the format 'ROBOFLOW_API_KEY=your_api_key' in home directory. ")
         return None
 
     target_path = os.path.join(DOWNLOAD_DIR, "traffic_signs")

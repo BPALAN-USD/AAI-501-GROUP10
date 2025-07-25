@@ -4,6 +4,19 @@ pip install -r requirements.txt
 
 
 mkdir utils
+mkdir objectDetection
+
+cd objectDetection
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install matplotlib seaborn pandas opencv-python
+git clone https://github.com/ultralytics/yolov5
+cd yolov5 
+python train.py --img 416 --batch 16 --epochs 5 --data ../../datasets/traffic_signs/data.yaml --weights yolov5s.pt --name traffic_sign_model
+
+cd ..
+python bpalan_od_test.py
+
+
 
 streamlit run Home.py
 

@@ -1,4 +1,5 @@
 datasets/
+results/
 localtest/
 logs/
 __pycache__/
