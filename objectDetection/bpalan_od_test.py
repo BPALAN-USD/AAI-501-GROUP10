@@ -6,7 +6,7 @@ import pandas as pd
 
 # === Load the trained model ===
 model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5/runs/train/traffic_sign_model2/weights/best.pt')
-model.conf = 0.02  # Set once globally
+model.conf = 0.25  # Set once globally
 
 # === Set folder path for test images ===
 test_folder = '../datasets/traffic_signs/test/images/'
