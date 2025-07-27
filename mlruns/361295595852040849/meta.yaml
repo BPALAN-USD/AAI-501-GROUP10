@@ -1,0 +1,6 @@
+artifact_location: file:///Users/bhavinpalan/Documents/All%20Documents/University%20of%20San%20Diego/AAI%20-%20501/AAI-501-GROUP10/mlruns/361295595852040849
+creation_time: 1753585897990
+experiment_id: '361295595852040849'
+last_update_time: 1753585897990
+lifecycle_stage: active
+name: YOLOv5_ObjectDetection_Async

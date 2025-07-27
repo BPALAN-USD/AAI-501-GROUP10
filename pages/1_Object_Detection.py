@@ -51,6 +51,7 @@ def render_image_table(df, page_size=6, images_per_row=3):
                 break
 
             image_path_raw = paginated_images[i + j]
+            print(image_path_raw)
             image_path = image_path_raw.replace("../results", "./results")
 
             with cols[j]:
@@ -193,6 +194,11 @@ for i, tab in enumerate(tabs):
 
                     df_results = load_results_csv(RESULTS_CSV)
                     if df_results is not None and not df_results.empty:
+                        df_results = df_results[
+                                        df_results['processed_image'].notnull() &
+                                        (df_results['processed_image'].astype(str).str.lower() != 'none')
+                                    ].reset_index(drop=True)    
+
                         render_image_table(df_results, page_size=10)
                     else:
                         st.warning("Results file is empty or malformed.")
