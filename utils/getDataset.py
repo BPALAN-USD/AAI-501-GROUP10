@@ -41,8 +41,8 @@ def get_traffic_dataset(logger):
     try:
         logger.info("🔐 Initializing Roboflow client...")
         rf = Roboflow(api_key=api_key)
-        project = rf.workspace("prashant-qp3sw").project("traffic-sign-yh4bz")
-        version = project.version(3)
+        project = rf.workspace("thesis-n8pew").project("multiple-traffic-sign-detection")
+        version = project.version(1)
 
         logger.info("⬇️ Downloading dataset using Roboflow SDK...")
         # Download directly into target_path
